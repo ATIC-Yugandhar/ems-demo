@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ems.mapper.EmployeeMapper">
+    
+    <!-- Result Map -->
+    <resultMap id="EmployeeResultMap" type="com.ems.model.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="password" column="password"/>
+        <result property="phone" column="phone"/>
+        <result property="department" column="department"/>
+        <result property="role" column="role"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+    
+    <!-- Search employees with dynamic conditions -->
+    <select id="searchEmployees" resultMap="EmployeeResultMap">
+        SELECT * FROM employees 
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="email != null and email != ''">
+                AND email LIKE CONCAT('%', #{email}, '%')
+            </if>
+            <if test="department != null and department != ''">
+                AND department LIKE CONCAT('%', #{department}, '%')
+            </if>
+            <if test="role != null and role != ''">
+                AND role LIKE CONCAT('%', #{role}, '%')
+            </if>
+        </where>
+        ORDER BY created_at DESC
+    </select>
+    
+    <!-- Batch insert employees -->
+    <insert id="batchInsert">
+        INSERT INTO employees (name, email, password, phone, department, role)
+        VALUES
+        <foreach collection="list" item="emp" separator=",">
+            (#{emp.name}, #{emp.email}, #{emp.password}, #{emp.phone}, #{emp.department}, #{emp.role})
+        </foreach>
+    </insert>
+    
+</mapper>

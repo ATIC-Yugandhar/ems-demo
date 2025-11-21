@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(mvn clean:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(java:*)",
+      "Bash(sqlite3:*)",
+      "Bash(python3:*)",
+      "Bash(brew install:*)",
+      "Bash(export PATH=\"/opt/homebrew/opt/openjdk@11/bin:$PATH\")",
+      "Bash(mvn:*)",
+      "Bash(export:*)",
+      "Bash(timeout 30s mvn spring-boot:run)",
+      "Bash(echo $JAVA_HOME)",
+      "Read(//opt/homebrew/Cellar/openjdk@11/**)",
+      "Bash(find:*)",
+      "Bash(brew services start:*)",
+      "Bash(mysql:*)",
+      "WebSearch",
+      "Bash(curl:*)",
+      "Bash(unzip:*)",
+      "Bash(chmod:*)",
+      "Bash(/Users/yogi/projects/ems-demo/setup_keycloak.sh)",
+      "Bash(pkill:*)",
+      "Bash(/Users/yogi/projects/ems-demo/test_api_endpoints.sh)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

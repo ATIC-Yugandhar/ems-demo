@@ -1,0 +1,6 @@
+name,email,department,phone,password,role
+John Smith,john.smith@company.com,Engineering,1111111111,password123,EMPLOYEE
+Jane Doe,jane.doe@company.com,Marketing,2222222222,securepass,EMPLOYEE
+Mike Johnson,mike.johnson@company.com,Sales,3333333333,mypassword,MANAGER
+Lisa Brown,lisa.brown@company.com,Finance,4444444444,lisa123,EMPLOYEE
+David Wilson,david.wilson@company.com,IT,5555555555,david456,ADMIN

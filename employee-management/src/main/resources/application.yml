@@ -1,0 +1,50 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: employee-management
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/employee_management?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: ems_user
+    password: ems_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/employee-realm
+
+# MyBatis Configuration
+mybatis:
+  type-aliases-package: com.ems.model
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+keycloak:
+  realm: employee-realm
+  auth-server-url: http://localhost:8080
+  ssl-required: external
+  resource: employee-api-client
+  credentials:
+    secret: employee-api-client-secret
+  use-resource-role-mappings: true
+  bearer-only: true
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.ems: DEBUG
+    com.ems.mapper: DEBUG
+    org.keycloak: DEBUG
